@@ -736,6 +736,8 @@ float probe_at_point(const float &rx, const float &ry, const ProbePtRaise raise_
 
   if (isnan(measured_z)) {
     STOW_PROBE();
+    wait_for_heatup = wait_for_user = false;
+    card.flag.abort_sd_printing = true;
     LCD_MESSAGEPGM(MSG_LCD_PROBING_FAILED);
     SERIAL_ERROR_MSG(MSG_ERR_PROBING_FAILED);
   }
